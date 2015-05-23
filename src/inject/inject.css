@@ -1,0 +1,13 @@
+#urban-discount-plugin {
+    padding:10px;
+    border:1px solid #000;
+    background:#fff;
+    color:green;
+    font-family:helvetica,arial;
+    position:fixed;
+    top:150px;
+    right:30px;
+    z-index:999;
+    font-size:14px;
+    letter-spacing:1px;
+}
