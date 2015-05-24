@@ -17,7 +17,9 @@
             }
             document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '<h2 id="urban-discount-plugin">'+price+'</h2>');
 
-            document.getElementsByClassName('mainPrice')[0].innerHTML = formatCurrency(price);
+            if(!document.getElementsByClassName('urban-discount-extension-price')[0]){
+                document.getElementsByClassName('product-price')[0].insertAdjacentHTML('beforeend', '<span class="urban-discount-extension-price">' + formatCurrency(parseFloat(price)) + '</span>');
+            }
 
             // If we're on a product loop page
             document.getElementsByClassName('product').every(function(element, index, array){
