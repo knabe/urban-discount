@@ -19,17 +19,31 @@
     }, false)
 
     var init = function(price){
-        
+
         if(price !== undefined) {
             var discount = isPartialDiscount ? .2 : .4,
             qtyContainer = document.getElementById("urban-discount-plugin");
 
-            price = '$' + (price - (price * discount) ).toFixed(2)
+            price = price - (price * discount);
 
             if(qtyContainer != null){
                 qtyContainer.parentNode.removeChild(qtyContainer);
             }
+
             document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '<h2 id="urban-discount-plugin">'+price+'</h2>');
+
+            if(!document.getElementsByClassName('urban-discount-extension-price')[0]){
+                document.getElementsByClassName('product-price')[0].insertAdjacentHTML('beforeend', '<span class="urban-discount-extension-price">' + formatCurrency(parseFloat(price)) + '</span>');
+            }
+
+            else{
+                document.getElementsByClassName('urban-discount-extension-price')[0].innerHTML = formatCurrency(price);
+            }
+
+            // If we're on a product loop page
+            document.getElementsByClassName('product').every(function(element, index, array){
+                console.log(index);
+            });
         }
     }
 
@@ -42,6 +56,14 @@
         var parentCat = stockParentCategory()
         return (config.partialDiscount.contains(parentCat) ? true : false);
     }
+
+    // Format Price
+    var formatCurrency = function(price){
+        price.toFixed(2);
+        price = '$' + price;
+        return price;
+    }
+
 
     function stockLoop() {
         //loop through angular scope no more than 6 times 
