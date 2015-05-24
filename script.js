@@ -11,7 +11,7 @@ var stockLevelExtension = function(){
 
     var loopcounter = 0,
     config = {
-        partialDiscount : ['BEAUTY','APARTMENT','MUSIC'] //these things are only 20% off
+        partialDiscount : ['BEAUTY','APARTMENT','MUSIC'] //these things are only 25% off
     }
 
     // document.addEventListener('click', function() {
@@ -75,7 +75,7 @@ var stockLevelExtension = function(){
 
     // Format Price
     var formatCurrency = function(formatPrice){
-        var discount = isPartialDiscount() ? .2 : .4;
+        var discount = isPartialDiscount() ? .25 : .4;
         formatPrice = formatPrice - (formatPrice * discount)
         formatPrice = formatPrice.toFixed(2);
         formatPrice = '$' + formatPrice;
