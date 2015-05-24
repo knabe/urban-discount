@@ -1,8 +1,8 @@
 {
-  "name": "Urban Discount",
+  "name": "Urban Outfitters Employee Discount",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "View employee discount",
+  "description": "View employee discount on product detail and product category pages",
   "homepage_url": "https://github.com/knabe/urban-discount",
   "background": {
     "page": "src/bg/background.html",

@@ -22,21 +22,11 @@ var stockLevelExtension = function(){
     var init = function(price){
 
         if(price !== undefined) {
-            var discount = isPartialDiscount() ? .2 : .4,
-            qtyContainer = document.getElementById("urban-discount-plugin");
 
-            price = price - (price * discount);
-
-            if(qtyContainer != null){
-                qtyContainer.parentNode.removeChild(qtyContainer);
-            }
-
-            document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend', '<h2 id="urban-discount-plugin">'+price+'</h2>');
-
+            //prevent price duplicates
             if(!document.getElementsByClassName('urban-discount-extension-price')[0]){
-                document.getElementsByClassName('product-price')[0].insertAdjacentHTML('beforeend', '<span class="urban-discount-extension-price">' + formatCurrency(parseFloat(price)) + '</span>');
+                document.getElementsByClassName('product-price')[0].insertAdjacentHTML('beforeend', '<span class="urban-discount-extension-price"> - ' + formatCurrency(parseFloat(price)) + '</span>');
             }
-
             else{
                 document.getElementsByClassName('urban-discount-extension-price')[0].innerHTML = formatCurrency(price);
             }
@@ -45,12 +35,12 @@ var stockLevelExtension = function(){
 
     // Category Page Init
     var categoryInit = function(){
-        var discount = isPartialDiscount() ? .2 : .4;
         // If we're on a product loop page
         var productArray = document.getElementsByClassName('product');
         for(var i=0, arrayLen = productArray.length; i < arrayLen; i++){
 
             var priceElement;
+            var rootPriceElem = productArray[i].getElementsByClassName('price')[0];
 
             if(productArray[i].getElementsByClassName('price-old')[0]){
                 priceElement = productArray[i].getElementsByClassName('price-old')[0];
@@ -60,24 +50,24 @@ var stockLevelExtension = function(){
                 //tempPrice.toString();
             }
             else{
-                priceElement = productArray[i].getElementsByClassName('price')[0];
+                priceElement = rootPriceElem;
             }
 
-            // priceElement = priceElement.innerHTML.substring(0,priceElement.innerHTML.indexOf('<'));
             var price  = parseFloat(priceElement.innerHTML.replace(/[^\d\.]/g,''));
 
-            price = formatCurrency( price - (price * discount) );
-            console.log(price);
+            price = formatCurrency( price );
 
-            productArray[i].getElementsByClassName('price')[0].insertAdjacentHTML('beforeend', ' - <span class="urban-discount-extension-price">' + price + '</span>');
+            rootPriceElem.insertAdjacentHTML('beforeend', ' - <span class="urban-discount-extension-price">' + price + '</span>');
         }
     }
 
+    //return parent category
     var stockParentCategory = function(){
         var elem = document.getElementsByClassName("header-nav-data")
         return elem[0].getAttribute('data-selected');
     }
 
+    //check if partial discount category
     var isPartialDiscount = function(){
         var parentCat = stockParentCategory()
         return (config.partialDiscount.contains(parentCat) ? true : false);
@@ -85,6 +75,8 @@ var stockLevelExtension = function(){
 
     // Format Price
     var formatCurrency = function(formatPrice){
+        var discount = isPartialDiscount() ? .2 : .4;
+        formatPrice = formatPrice - (formatPrice * discount)
         formatPrice = formatPrice.toFixed(2);
         formatPrice = '$' + formatPrice;
         return formatPrice;
