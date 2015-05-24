@@ -15,7 +15,8 @@
     {
       "run_at": "document_end",
       "matches": [
-        "*://*.urbanoutfitters.com/*/catalog/productdetail.jsp*"
+        "*://*.urbanoutfitters.com/*/catalog/productdetail.jsp*",
+        "*://*.urbanoutfitters.com/*/catalog/category.jsp*"
       ],
       "css": [
         "src/inject/inject.css"
