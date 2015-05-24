@@ -21,6 +21,10 @@
                 document.getElementsByClassName('product-price')[0].insertAdjacentHTML('beforeend', '<span class="urban-discount-extension-price">' + formatCurrency(parseFloat(price)) + '</span>');
             }
 
+            else{
+                document.getElementsByClassName('urban-discount-extension-price')[0].innerHTML = formatCurrency(parseFloat(price));
+            }
+
             // If we're on a product loop page
             document.getElementsByClassName('product').every(function(element, index, array){
                 console.log(index);
