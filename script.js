@@ -11,7 +11,7 @@ var stockLevelExtension = function(){
 
     var loopcounter = 0,
     config = {
-        partialDiscount : ['BEAUTY','APARTMENT','MUSIC'] //these things are only 25% off
+        partialDiscount : ['BEAUTY','APARTMENT','MUSIC','W_BEAUTY'] //these things are only 25% off
     }
 
     // document.addEventListener('click', function() {
