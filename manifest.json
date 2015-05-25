@@ -1,6 +1,6 @@
 {
   "name": "Urban Outfitters Employee Discount",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "View your estimated employee discount amount directly on products throughout the site.",
   "homepage_url": "https://github.com/knabe/urban-discount",
