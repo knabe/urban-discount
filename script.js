@@ -90,7 +90,7 @@ var stockLevelExtension = function(){
                 loopcounter++;
                 setTimeout(function () {
                     if(loopcounter <= 6){
-                        var prodList = angular.element('[ng-controller=MainCtrl]').scope().serviceGroup.products.productList[0].prodData.prices.high;
+                        var prodList = angular.element('body').scope().$parent.serviceGroup.products.productList[0].prodData.prices.high;
                         if(prodList !== undefined){
                             init(prodList);
                             //kill the loop
